@@ -51,7 +51,7 @@ window.addEventListener("DOMContentLoaded", () => {
     loadData();
 });
 
-// ---------- API ----------
+
 
 async function loadStarterPokemon() {
     try {
@@ -90,7 +90,7 @@ async function searchPokemon(name) {
     }
 }
 
-// ---------- RENDER ----------
+
 
 
 
@@ -109,16 +109,16 @@ function renderPokemon(pokemon) {
     const img = document.createElement("img");
     img.src = pokemon.sprites.front_default;
 
-    // TYPE
+    
     const type = document.createElement("p");
     type.textContent =
         "Type: " +
         pokemon.types.map(t => t.type.name).join(", ");
 
-    // LINE
+    
     const line1 = document.createElement("hr");
 
-    // STATS TITLE
+    
     const statsTitle = document.createElement("strong");
     statsTitle.textContent = "Base Stats";
 
@@ -131,10 +131,10 @@ function renderPokemon(pokemon) {
     const defense = document.createElement("p");
     defense.textContent = "🛡️ Defence: " + pokemon.stats[2].base_stat;
 
-    // LINE
+    
     const line2 = document.createElement("hr");
 
-    // BUTTON
+    
     const catchBtn = document.createElement("button");
     catchBtn.textContent = "Catch";
 
@@ -142,14 +142,14 @@ function renderPokemon(pokemon) {
         catchPokemon(pokemon);
     });
 
-    // MODAL CLICK
+    
     card.addEventListener("click", (e) => {
         if (e.target.tagName !== "BUTTON") {
             openModal(pokemon);
         }
     });
 
-    // APPEND VISKO
+    
     card.append(
         name,
         img,
@@ -178,7 +178,7 @@ function renderPokemon(pokemon) {
 
 
 
-// ---------- CATCH ----------
+
 
 function catchPokemon(pokemon) {
 
@@ -207,7 +207,7 @@ function catchPokemon(pokemon) {
 
 }
 
-// ---------- COLLECTION ----------
+
 
 
 
@@ -221,23 +221,23 @@ function renderCollection(list = collection) {
         const card = document.createElement("div");
         card.classList.add("card");
 
-        // NAME
+        
         const name = document.createElement("h3");
         name.textContent = p.name;
 
-        // IMAGE
+        
         const img = document.createElement("img");
         img.src = p.image;
 
-        // LEVEL
+        
         const level = document.createElement("p");
         level.textContent = "Level: " + p.level;
 
-        // TYPES
+        
         const types = document.createElement("p");
         types.textContent = "Types: " + p.types.join(", ");
 
-        // BUTTONS
+        
         const trainBtn = document.createElement("button");
         trainBtn.textContent = "Train";
 
@@ -272,7 +272,7 @@ resultBox.append(
 
 
         
-        // EVENTS
+        
        trainBtn.addEventListener("click", () => trainPokemon(p));
 
 resultBtn.addEventListener("click", () => {
@@ -288,7 +288,7 @@ resultBtn.addEventListener("click", () => {
 releaseBtn.addEventListener("click", () => releasePokemon(p));
         
 
-        // APPEND
+        
    card.append(
     name,
     img,
@@ -310,7 +310,7 @@ releaseBtn.addEventListener("click", () => releasePokemon(p));
 
 
 
-// ---------- TRAIN ----------
+
 
 function trainPokemon(p) {
     p.level++;
@@ -325,7 +325,7 @@ function trainPokemon(p) {
     renderCollection();
 }
 
-// ---------- XP ----------
+
 
 function addXP(amount) {
 
@@ -370,7 +370,7 @@ function showLevelUp() {
     }, 2000);
 }
 
-// ---------- STATS ----------
+
 
 function renderStats() {
 
@@ -388,9 +388,9 @@ function renderStats() {
 }
 
 
-// ================================
-// FAVORITES SISTEMA
-// ================================
+
+
+
 
 function toggleFavorite(pokemon) {
 
@@ -402,9 +402,9 @@ function toggleFavorite(pokemon) {
 }
 
 
-// ================================
-// RELEASE SISTEMA
-// ================================
+
+
+
 
 function releasePokemon(pokemon) {
 
@@ -424,9 +424,9 @@ function releasePokemon(pokemon) {
 }
 
 
-// ================================
-// BATTLE SIMULATOR
-// ================================
+
+
+
 
 function startBattle() {
 
@@ -505,18 +505,17 @@ function startBattle() {
 }
 
 
-// ================================
-// BUTTON EVENT
-// ================================
+
+
+
 
 document
     .getElementById("battleBtn")
     .addEventListener("click", startBattle);
 
 
-// ================================
-// UPDATE BATTLE OPTIONS
-// ================================
+
+
 
 function updateBattleOptions() {
 
@@ -556,7 +555,7 @@ function updateBattleOptions() {
 
 
 
-// ---------- SEARCH COLLECTION ----------
+
 
 collectionSearch.addEventListener("input", () => {
 
@@ -569,7 +568,7 @@ collectionSearch.addEventListener("input", () => {
     );
 });
 
-// ---------- FILTER ----------
+
 
 showFireBtn.onclick = () => {
     renderCollection(
@@ -581,7 +580,7 @@ showFireBtn.onclick = () => {
 
 showAllBtn.onclick = () => renderCollection();
 
-// ---------- RANDOM ----------
+
 
 randomBtn.onclick = async () => {
     const id = Math.floor(Math.random()*150)+1;
@@ -590,7 +589,7 @@ randomBtn.onclick = async () => {
     renderPokemon(data);
 };
 
-// ---------- ACHIEVEMENTS ----------
+
 
 
 
@@ -628,7 +627,7 @@ function renderAchievements() {
 
 
 
-    // LEVEL 5
+    
     const levelText = document.createElement("p");
 
     levelText.textContent =
@@ -643,7 +642,7 @@ function renderAchievements() {
 
 
 
-    // XP 1000
+    
     const xpText = document.createElement("p");
 
     xpText.textContent =
@@ -656,7 +655,7 @@ function renderAchievements() {
 
     achievementContainer.append(xpText, xpBar);
 }
-// ---------- BATTLE ----------
+
 
 function updateBattleOptions() {
 
@@ -690,7 +689,7 @@ battleBtn.onclick = () => {
     battleResult.textContent = result;
 };
 
-// ---------- MODAL ----------
+
 
 function openModal(pokemon) {
 
@@ -710,7 +709,7 @@ window.onclick = e => {
     if(e.target === modal) modal.style.display = "none";
 };
 
-// ---------- SEARCH API ----------
+
 
 searchBtn.onclick = () => {
     searchPokemon(searchInput.value.toLowerCase());
