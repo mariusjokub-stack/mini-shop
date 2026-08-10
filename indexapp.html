@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="lt">
-
 <head>
 
     <meta charset="UTF-8">
@@ -13,22 +12,14 @@
     <link rel="stylesheet" href="app.css">
 
 </head>
-
 <body>
 
-    <!-- HEADER -->
-
-    <header>
+    <div class="container">
 
         <h1>🎬 Filmų / Anime Paieška</h1>
 
-    </header>
 
-
-
-    <!-- NAV -->
-
-    <nav>
+        
 
         <div class="top-buttons">
 
@@ -41,6 +32,9 @@
             </button>
 
         </div>
+
+
+        
 
         <div class="search-box">
 
@@ -55,6 +49,9 @@
             </button>
 
         </div>
+
+
+        
 
         <div class="sort-box">
 
@@ -80,49 +77,24 @@
 
         </div>
 
-    </nav>
+
+        
+
+        <div id="loading" class="hidden">
+
+            <div class="spinner"></div>
+
+            <p>Loading...</p>
+
+        </div>
 
 
+        
 
-    <!-- MAIN -->
-
-    <main>
-
-        <section>
-
-            <div id="loading" class="hidden">
-
-                <div class="spinner"></div>
-
-                <p>Loading...</p>
-
-            </div>
-
-            <div id="message"></div>
-
-            <h2>Rezultatai</h2>
-
-            <div id="moviesContainer"></div>
-
-        </section>
+        <div id="message"></div>
 
 
-
-        <section>
-
-            <h2>Mėgstami Filmai</h2>
-
-            <div id="favoritesContainer"></div>
-
-        </section>
-
-    </main>
-
-
-
-    <!-- ASIDE -->
-
-    <aside>
+        
 
         <div class="dashboard">
 
@@ -152,25 +124,29 @@
 
         </div>
 
-    </aside>
+        
 
 
+        
 
-    <!-- FOOTER -->
+        <h2>Rezultatai</h2>
 
-    <footer>
+        <div id="moviesContainer"></div>
 
-        <p>
-            Movie Search App 2026
-        </p>
 
-    </footer>
+    
+
+        <h2>Mėgstami Filmai</h2>
+
+        <div id="favoritesContainer"></div>
+
+    </div>
 
     <script src="app.js"></script>
 
 </body>
-
 </html>
+
 
 
 

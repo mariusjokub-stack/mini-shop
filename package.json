@@ -15,13 +15,28 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "cypress": "^15.17.0",
     "eslint": "^10.2.1",
     "eslint-config-xo": "^0.51.0",
     "globals": "^17.5.0",
+    "jest": "^30.4.2",
     "typescript": "^6.0.3"
-  }
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.4.0",
+    "axios": "^1.18.0",
+    "dayjs": "^1.11.21",
+    "generate-password": "^1.7.1",
+    "inspirational-quotes": "^2.0.1",
+    "quotesy": "^1.0.10",
+    "random-int": "^3.1.0",
+    "random-number": "^0.0.9",
+    "react-router-dom": "^7.18.2",
+    "uuid": "^14.0.0"
+  },
+  "keywords": []
 }

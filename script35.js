@@ -1141,7 +1141,6 @@ const { profilis: { socialiniai: { ig, fb } } } = vartotojas;
 
 console.log(ig); // "@tomas_dev"
 console.log(fb); // "TomasDevPage"
-*/
 
 function pasisveikink() {
     console.log("labas pasauli");
@@ -1149,3 +1148,6 @@ function pasisveikink() {
 
 // Funkcijos iškvietimas
 pasisveikink();
+*/
+
+
