@@ -3669,7 +3669,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 
 */
-
+/*
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -3691,6 +3691,269 @@ function App() {
           <Route path="*" element={<NotFound />} />
       </Routes>
     </>
+  );
+}
+
+export default App;
+
+*/
+/*
+import { useState } from "react";
+
+function App() {
+  const [name, setName] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    alert(`Įvestas vardas: ${name}`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Įveskite vardą"
+      />
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+export default App;
+
+*/
+
+/*
+import RegistrationForm from "./RegistrationForm";
+
+function App() {
+  return (
+    <div>
+      <h1>Registracija</h1>
+      <RegistrationForm />
+    </div>
+  );
+}
+
+export default App;
+
+
+*/
+
+/*
+import LoginForm from "./LoginForm";
+
+function App() {
+  return (
+    <div>
+      <h1>Prisijungimas</h1>
+
+      <LoginForm />
+    </div>
+  );
+}
+
+export default App;
+
+
+
+*/
+
+/*
+
+import ProfileForm from "./ProfileForm";
+
+function App() {
+  return (
+    <div>
+      <h1>Profilis</h1>
+      <ProfileForm />
+    </div>
+  );
+}
+
+export default App;
+*/
+/*
+import StudentForm from "./StudentForm";
+
+function App() {
+  return (
+    <div>
+      <h1>Studento registracija</h1>
+      <StudentForm />
+    </div>
+  );
+}
+
+export default App;
+
+*/
+
+/*
+import { useState } from "react";
+import Child from "./Child";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  console.log("Father render");
+
+  return (
+    <div>
+      <h1>React.memo demo</h1>
+
+      <h2>Count: {count}</h2>
+
+      <button onClick={() => setCount(count + 1)}>
+        +1
+      </button>
+
+      <Child name="Marius" />
+    </div>
+  );
+}
+
+export default App;
+
+*/
+
+/*
+
+import Counter from "./Counter";
+import UserInfo from "./UserInfo";
+
+function App() {
+  const user = {
+    name: "Marius",
+    age: 50,
+  };
+
+  return (
+    <div>
+      <h1>React.memo užduotis</h1>
+
+      <Counter />
+
+      <UserInfo user={user} />
+    </div>
+  );
+}
+
+export default App;
+
+
+*/
+/*
+import ProductList from "./ProductList";
+import Counter from "./Counter";
+
+function App() {
+  const products = [
+    { id: 1, name: "Telefonas", price: 500 },
+    { id: 2, name: "Kompiuteris", price: 1200 },
+    { id: 3, name: "Ausinės", price: 100 },
+    { id: 4, name: "Pelė", price: 50 },
+  ];
+
+  return (
+    <div>
+      <h1>Produktai</h1>
+
+      <Counter />
+
+      <ProductList products={products} />
+    </div>
+  );
+}
+
+export default App;
+
+
+*/
+/*
+import { useState } from "react";
+import UserCard from "./UserCard";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  const user = {
+    name: "Jonas",
+    age: 20
+  };
+
+  return (
+    <div>
+      <h1>memo + props objektas</h1>
+
+      <h2>Count: {count}</h2>
+
+      <button onClick={() => setCount(count + 1)}>
+        +1
+      </button>
+
+      <UserCard user={user} />
+    </div>
+  );
+}
+
+export default App;
+
+*/
+
+import { useMemo, useState } from "react";
+
+function App() {
+  const numbers = [10, 20, 30, 40, 50];
+
+  const [count, setCount] = useState(0);
+
+  const suma = useMemo(() => {
+    console.log("Skaičiuojama suma");
+
+    return numbers.reduce((total, number) => total + number, 0);
+  }, [numbers]);
+
+  const vidurkis = useMemo(() => {
+    console.log("Skaičiuojamas vidurkis");
+
+    return suma / numbers.length;
+  }, [suma, numbers]);
+
+  const maziausias = useMemo(() => {
+    console.log("Ieškomas mažiausias");
+
+    return Math.min(...numbers);
+  }, [numbers]);
+
+  const didziausias = useMemo(() => {
+    console.log("Ieškomas didžiausias");
+
+    return Math.max(...numbers);
+  }, [numbers]);
+
+  return (
+    <div>
+      <h1>Skaičių statistika</h1>
+
+      <p>Suma: {suma}</p>
+      <p>Vidurkis: {vidurkis}</p>
+      <p>Mažiausias: {maziausias}</p>
+      <p>Didžiausias: {didziausias}</p>
+
+      <hr />
+
+      <p>Count: {count}</p>
+
+      <button onClick={() => setCount(count + 1)}>
+        Padidinti
+      </button>
+    </div>
   );
 }
 

@@ -1,3 +1,6 @@
+
+/*
+
 function ProductCard(props) {
   return (
     <div>
@@ -8,4 +11,4 @@ function ProductCard(props) {
 }
 
 export default ProductCard;
-
+*/

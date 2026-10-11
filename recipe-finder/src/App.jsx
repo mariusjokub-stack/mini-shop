@@ -123,7 +123,7 @@ function App() {
 
 export default App
 */
-
+/*
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 
@@ -154,6 +154,64 @@ function App() {
   <Route path="*" element={<NotFound />} />
 </Routes>
     </>
+  );
+}
+
+export default App;
+
+*/
+
+/*
+import { useState } from "react";
+
+function App() {
+  const [name, setName] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    alert(`Įvestas vardas: ${name}`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Įveskite vardą"
+      />
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+export default App;
+*/
+
+import { useState } from "react";
+
+function App() {
+  const [name, setName] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    alert(`Įvestas vardas: ${name}`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Įveskite vardą"
+      />
+
+      <button type="submit">Submit</button>
+    </form>
   );
 }
 

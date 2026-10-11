@@ -11,7 +11,7 @@ function StudentCard(props) {
 
 export default StudentCard;
 */
-
+/*
 
 function StudentCard(props) {
   return (
@@ -30,3 +30,5 @@ function StudentCard(props) {
 }
 
 export default StudentCard;
+
+*/

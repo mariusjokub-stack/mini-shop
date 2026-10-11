@@ -1,3 +1,6 @@
+/*
+
+
 function Footer() {
   return (
     <footer>
@@ -7,3 +10,7 @@ function Footer() {
 }
 
 export default Footer;
+
+*/
+
+

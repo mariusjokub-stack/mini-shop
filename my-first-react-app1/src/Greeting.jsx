@@ -1,5 +1,5 @@
 
-
+/*
 function Greeting() {
   return (
     <>
@@ -12,3 +12,5 @@ function Greeting() {
 }
 
 export default Greeting;
+
+*/
