@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const Product = require("./models/Product");
 const Category = require("./models/Category");
+const User = require("./models/User");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 
 
@@ -12,6 +15,74 @@ require("dotenv").config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+
+app.post("/auth/register", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Patikriname, ar įvesti abu duomenys
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "Įvesk el. paštą ir slaptažodį",
+      });
+    }
+
+    // Patikriname slaptažodžio ilgį
+    if (password.length < 8) {
+      return res.status(400).json({
+        message: "Slaptažodis turi būti bent 8 simbolių",
+      });
+    }
+
+    // Patikriname, ar vartotojas jau registruotas
+    const existingUser = await User.findOne({
+      email: email.trim().toLowerCase(),
+    });
+
+    if (existingUser) {
+      return res.status(409).json({
+        message: "Šis el. paštas jau užregistruotas",
+      });
+    }
+
+    // Užšifruojame slaptažodį
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Sukuriame vartotoją MongoDB duomenų bazėje
+    const user = await User.create({
+      email,
+      password: hashedPassword,
+    });
+
+    // Sukuriame prisijungimo žetoną
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    return res.status(201).json({
+      message: "Registracija sėkminga!",
+      token,
+      user: {
+        id: user._id,
+        email: user.email,
+      },
+    });
+  } catch (error) {
+    console.error("Registracijos klaida:", error);
+
+    return res.status(500).json({
+      message: "Įvyko serverio klaida",
+    });
+  }
+});
+
+
+
+
+
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -175,6 +246,12 @@ if (!product) {
 });
 
 
+
+
+
+
+
+
 app.delete("/categories/:id", async (req, res) => {
   try {
     const category = await Category.findOneAndDelete({
@@ -198,6 +275,38 @@ app.delete("/categories/:id", async (req, res) => {
     });
   }
 });
+
+
+
+
+
+
+
+
+app.delete("/products/:id", async (req, res) => {
+  try {
+    const product = await Product.findByIdAndDelete(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({
+        message: "Prekė nerasta"
+      });
+    }
+
+    res.json({
+      message: "Prekė ištrinta",
+      product
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
+});
+
+
+
+
 
 
 
@@ -241,6 +350,62 @@ app.get("/categories", async (req, res) => {
     res.json(categories);
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+});
+
+
+
+app.post("/auth/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "Įvesk el. paštą ir slaptažodį",
+      });
+    }
+
+    const user = await User.findOne({
+      email: email.trim().toLowerCase(),
+    });
+
+    if (!user) {
+      return res.status(401).json({
+        message: "Neteisingas el. paštas arba slaptažodis",
+      });
+    }
+
+    const passwordIsCorrect = await bcrypt.compare(
+      password,
+      user.password
+    );
+
+    if (!passwordIsCorrect) {
+      return res.status(401).json({
+        message: "Neteisingas el. paštas arba slaptažodis",
+      });
+    }
+
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    return res.status(200).json({
+      message: "Prisijungimas sėkmingas!",
+      token,
+      user: {
+        id: user._id,
+        email: user.email,
+      },
+    });
+  } catch (error) {
+    console.error("Prisijungimo klaida:", error);
+
+    return res.status(500).json({
+      message: "Įvyko serverio klaida",
+    });
   }
 });
 
